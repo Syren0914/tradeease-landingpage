@@ -2,7 +2,7 @@
 import { Logo } from '@/app/components/logo'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Button } from '@/app/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 

@@ -4,7 +4,7 @@ export function Logo() {
       <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
         <span className="text-primary-foreground font-bold text-sm">T</span>
       </div>
-      <span className="font-bold text-xl">TradeEase</span>
+      <span className="font-bold text-xl text-foreground">TradeEase</span>
     </div>
   )
 } 
