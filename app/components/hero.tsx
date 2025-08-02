@@ -1,241 +1,379 @@
 'use client'
-import { Logo } from '@/app/components/logo'
+import React, { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { ArrowRight, ChevronRight, Mail, SendHorizonal } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
+import { TextEffect } from '@/app/components/motion-primitives/text-effect'
+import { AnimatedGroup } from '@/app/components/motion-primitives/animated-group'
+import { HeroHeader } from './header'
+import DarkVeil from './DarkVeil/DarkVeil'
+import FluidGlass from './FluidGlass/FluidGlass'
+import { motion } from 'framer-motion'
+import {
+    FloatingIconsHero,
+    type FloatingIconsHeroProps,
+  } from './floating-icons'; // Adjust path as needed
+import { ContainerScroll } from '@/components/ui/container-scroll-animation'
+  
+  // --- Original Stylized Company Logo SVG Components ---
+  
+  const IconGoogle = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.9999 12.24C21.9999 11.4933 21.9333 10.76 21.8066 10.0533H12.3333V14.16H17.9533C17.7333 15.3467 17.0133 16.3733 15.9666 17.08V19.68H19.5266C21.1933 18.16 21.9999 15.4533 21.9999 12.24Z" fill="#4285F4"/>
+          <path d="M12.3333 22C15.2333 22 17.6866 21.0533 19.5266 19.68L15.9666 17.08C15.0199 17.7333 13.7933 18.16 12.3333 18.16C9.52659 18.16 7.14659 16.28 6.27992 13.84H2.59326V16.5133C4.38659 20.0267 8.05992 22 12.3333 22Z" fill="#34A853"/>
+          <path d="M6.2799 13.84C6.07324 13.2267 5.9599 12.58 5.9599 11.92C5.9599 11.26 6.07324 10.6133 6.2799 10L2.59326 7.32667C1.86659 8.78667 1.45326 10.32 1.45326 11.92C1.45326 13.52 1.86659 15.0533 2.59326 16.5133L6.2799 13.84Z" fill="#FBBC05"/>
+          <path d="M12.3333 5.68C13.8933 5.68 15.3133 6.22667 16.3866 7.24L19.6 4.02667C17.68 2.29333 15.2266 1.33333 12.3333 1.33333C8.05992 1.33333 4.38659 3.97333 2.59326 7.32667L6.27992 10C7.14659 7.56 9.52659 5.68 12.3333 5.68Z" fill="#EA4335"/>
+      </svg>
+  );
+  
+  const IconApple = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="currentColor" className="text-foreground/80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.482 15.334C16.274 16.146 15.238 17.554 15.238 19.138C15.238 21.694 17.062 22.846 19.33 22.99C21.682 23.122 23.53 21.73 23.53 19.138C23.53 16.57 21.742 15.334 19.438 15.334C18.23 15.334 17.482 15.334 17.482 15.334ZM19.438 1.018C17.074 1.018 15.238 2.41 15.238 4.982C15.238 7.554 17.062 8.702 19.33 8.842C21.682 8.974 23.53 7.582 23.53 4.982C23.518 2.41 21.742 1.018 19.438 1.018Z" />
+      </svg>
+  );
+  
+  const IconMicrosoft = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11.4 2H2v9.4h9.4V2Z" fill="#F25022"/>
+          <path d="M22 2h-9.4v9.4H22V2Z" fill="#7FBA00"/>
+          <path d="M11.4 12.6H2V22h9.4V12.6Z" fill="#00A4EF"/>
+          <path d="M22 12.6h-9.4V22H22V12.6Z" fill="#FFB900"/>
+      </svg>
+  );
+  
+  const IconFigma = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2z" fill="#2C2C2C"/>
+          <path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5V7z" fill="#0ACF83"/>
+          <path d="M12 12a5 5 0 0 1-5-5 5 5 0 0 1 5-5v10z" fill="#A259FF"/>
+          <path d="M12 17a5 5 0 0 1-5-5h10a5 5 0 0 1-5 5z" fill="#F24E1E"/>
+          <path d="M7 12a5 5 0 0 1 5 5v-5H7z" fill="#FF7262"/>
+      </svg>
+  );
+  
+  const IconGitHub = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="currentColor" className="text-foreground/80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+      </svg>
+  );
+  
+  const IconSlack = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.5 10a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" fill="#36C5F0"/><path d="M9 15.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" fill="#2EB67D"/><path d="M14 8.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" fill="#ECB22E"/><path d="M15.5 15a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" fill="#E01E5A"/><path d="M10 14h4v-1.5a1.5 1.5 0 0 0-1.5-1.5h-1a1.5 1.5 0 0 0-1.5 1.5V14Z" fill="#E01E5A"/><path d="M8.5 14a1.5 1.5 0 0 0 1.5 1.5h1.5v-1a1.5 1.5 0 0 0-1.5-1.5H8.5v1Z" fill="#ECB22E"/><path d="M15.5 10a1.5 1.5 0 0 0-1.5-1.5H12.5v4a1.5 1.5 0 0 0 1.5 1.5h1.5v-4Z" fill="#36C5F0"/><path d="M14 8.5a1.5 1.5 0 0 0-1.5-1.5h-1v4a1.5 1.5 0 0 0 1.5 1.5h1v-4Z" fill="#2EB67D"/>
+      </svg>
+  );
+  
+  const IconNotion = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="currentColor" className="text-foreground/80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm.111 5.889h3.222v10.222h-3.222V7.889zm-4.333 0h3.222v10.222H7.778V7.889z"/>
+      </svg>
+  );
+  
+  // --- New Unique SVG Icons ---
+  const IconVercel = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="currentColor" className="text-foreground/90" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 22h20L12 2z"/>
+      </svg>
+  );
+  
+  const IconStripe = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12Z" fill="#635BFF"/><path d="M6 7H18V9H6V7Z" fill="white"/><path d="M6 11H18V13H6V11Z" fill="white"/><path d="M6 15H14V17H6V15Z" fill="white"/>
+      </svg>
+  );
+  
+  const IconDiscord = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.317 4.482a1.88 1.88 0 0 0-1.635-.482C17.398 3.42 16.02 3 12 3s-5.398.42-6.682 1.001a1.88 1.88 0 0 0-1.635.483c-1.875 1.2-2.325 3.61-1.568 5.711 1.62 4.47 5.063 7.8 9.885 7.8s8.265-3.33 9.885-7.8c.757-2.1-.307-4.51-1.568-5.711ZM8.45 13.4c-.825 0-1.5-.75-1.5-1.65s.675-1.65 1.5-1.65c.825 0 1.5.75 1.5 1.65s-.675 1.65-1.5 1.65Zm7.1 0c-.825 0-1.5-.75-1.5-1.65s.675-1.65 1.5-1.65c.825 0 1.5.75 1.5 1.65s-.675 1.65-1.5 1.65Z" fill="#5865F2"/>
+      </svg>
+  );
+  
+  const IconX = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="currentColor" className="text-foreground/90" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231L18.244 2.25zM17.03 19.75h1.866L7.156 4.25H5.16l11.874 15.5z"/>
+      </svg>
+  );
+  
+  const IconSpotify = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm4.125 14.175c-.188.3-.563.413-.863.225-2.437-1.5-5.5-1.725-9.15-1.012-.338.088-.675-.15-.763-.488-.088-.337.15-.675.488-.762 3.937-.787 7.287-.525 9.975 1.125.3.187.412.562.225.862zm.9-2.7c-.225.363-.675.488-1.037.263-2.7-1.65-6.825-2.1-9.975-1.162-.413.113-.825-.15-1-.562-.15-.413.15-.825.563-1 .362-.112 3.487-.975 6.6 1.312.362.225.487.675.262 1.038v.112zm.113-2.887c-3.225-1.875-8.55-2.025-11.512-1.125-.487.15-.975-.15-1.125-.637-.15-.488.15-.975.638-1.125 3.337-.975 9.15-.787 12.825 1.312.45.263.6.825.337 1.275-.263.45-.825.6-1.275.337v-.038z" fill="#1DB954"/>
+      </svg>
+  );
+  
+  const IconDropbox = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 8l-6 4 6 4 6-4-6-4z" fill="#0061FF"/><path d="M6 12l6 4 6-4-6-4-6 4z" fill="#007BFF"/><path d="M12 16l6-4-6-4-6 4 6 4z" fill="#4DA3FF"/><path d="M18 12l-6-4-6 4 6 4 6-4z" fill="#0061FF"/>
+      </svg>
+  );
+  
+  const IconTwitch = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.149 0L.707 3.028v17.944h5.66v3.028h3.028l3.028-3.028h4.243l7.07-7.07V0H2.15zm19.799 13.434l-3.535 3.535h-4.95l-3.029 3.029v-3.03H5.14V1.414h16.808v12.02z" fill="#9146FF"/><path d="M15.53 5.303h2.12v6.36h-2.12v-6.36zm-4.95 0h2.12v6.36h-2.12v-6.36z" fill="#9146FF"/>
+      </svg>
+  );
+  
+  const IconLinear = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="linear-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#5E5CE6" /><stop offset="100%" stopColor="#2C2C2C" /></linearGradient></defs><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-4 9h8v2H8v-2z" fill="url(#linear-grad)"/>
+      </svg>
+  );
+  
+  const IconYouTube = (props: React.SVGProps<SVGSVGElement>) => (
+      <svg {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.582 6.186A2.482 2.482 0 0 0 19.82 4.42C18.1 4 12 4 12 4s-6.1 0-7.82.42c-.98.26-1.74.98-1.762 1.766C2 7.94 2 12 2 12s0 4.06.418 5.814c.022.786.782 1.506 1.762 1.766C6.1 20 12 20 12 20s6.1 0 7.82-.42c.98-.26 1.74-.98 1.762-1.766C22 16.06 22 12 22 12s0-4.06-.418-5.814zM9.75 15.5V8.5L15.75 12 9.75 15.5z" fill="#FF0000"/>
+      </svg>
+  );
+  
+  // Define the icons with their unique positions for the demo.
+  const demoIcons: FloatingIconsHeroProps['icons'] = [
+    // Total 16 unique icons
+    { id: 1, icon: IconGoogle, className: 'top-[10%] left-[10%]' },
+    { id: 2, icon: IconApple, className: 'top-[20%] right-[8%]' },
+    { id: 3, icon: IconMicrosoft, className: 'top-[80%] left-[10%]' },
+    { id: 4, icon: IconFigma, className: 'bottom-[10%] right-[10%]' },
+    { id: 5, icon: IconGitHub, className: 'top-[5%] left-[30%]' },
+    { id: 6, icon: IconSlack, className: 'top-[5%] right-[30%]' },
+    { id: 7, icon: IconVercel, className: 'bottom-[8%] left-[25%]' },
+    { id: 8, icon: IconStripe, className: 'top-[40%] left-[15%]' },
+    { id: 9, icon: IconDiscord, className: 'top-[75%] right-[25%]' },
+    { id: 10, icon: IconX, className: 'top-[90%] left-[70%]' },
+    { id: 11, icon: IconNotion, className: 'top-[50%] right-[5%]' },
+    { id: 12, icon: IconSpotify, className: 'top-[55%] left-[5%]' },
+    { id: 13, icon: IconDropbox, className: 'top-[5%] left-[55%]' },
+    { id: 14, icon: IconTwitch, className: 'bottom-[5%] right-[45%]' },
+    { id: 15, icon: IconLinear, className: 'top-[25%] right-[20%]' },
+    { id: 16, icon: IconYouTube, className: 'top-[60%] left-[30%]' },
+  ];
 
-const menuItems = [
-    { name: 'Features', href: '#' },
-    { name: 'Solution', href: '#' },
-    { name: 'Pricing', href: '#' },
-    { name: 'About', href: '#' },
-]
+
+
+const transitionVariants = {
+    item: {
+        hidden: {
+            opacity: 0,
+            filter: 'blur(12px)',
+            y: 12,
+        },
+        visible: {
+            opacity: 1,
+            filter: 'blur(0px)',
+            y: 0,
+            transition: {
+                type: 'spring',
+                bounce: 0.3,
+                duration: 1.5,
+            },
+        },
+    },
+}
 
 export default function HeroSection() {
-    const [menuState, setMenuState] = useState(false)
+    const titles = ["Growth.", "Success.", "Scale.", "Profit."];
+    const [titleNumber, setTitleNumber] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTitleNumber((prev) => (prev + 1) % titles.length);
+        }, 2000);
+        return () => clearInterval(interval);
+    }, [titles.length]);
+
     return (
         <>
-            <header>
-                <nav
-                    data-state={menuState && 'active'}
-                    className="fixed z-20 w-full border-b border-dashed bg-white backdrop-blur md:relative dark:bg-zinc-950/50 lg:dark:bg-transparent">
-                    <div className="m-auto max-w-5xl px-6">
-                        <div className="flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
-                            <div className="flex w-full justify-between lg:w-auto">
-                                <Link
-                                    href="/"
-                                    aria-label="home"
-                                    className="flex items-center space-x-2">
-                                    <Logo />
-                                </Link>
+            <HeroHeader />
+            <main className="overflow-hidden">
 
-                                <button
-                                    onClick={() => setMenuState(!menuState)}
-                                    aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
-                                    className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                                    <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                                    <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
-                                </button>
-                            </div>
-
-                            <div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
-                                <div className="lg:pr-4">
-                                    <ul className="space-y-6 text-base lg:flex lg:gap-8 lg:space-y-0 lg:text-sm">
-                                        {menuItems.map((item, index) => (
-                                            <li key={index}>
-                                                <Link
-                                                    href={item.href}
-                                                    className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                                                    <span>{item.name}</span>
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit lg:border-l lg:pl-6">
-                                    <Button
-                                        asChild
-                                        variant="outline"
-                                        size="sm">
-                                        <Link href="#">
-                                            <span>Login</span>
-                                        </Link>
-                                    </Button>
-                                    <Button
-                                        asChild
-                                        size="sm">
-                                        <Link href="#">
-                                            <span>Login</span>
-                                        </Link>
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </header>
-
-            <main>
-                <div
+                {/* <div
                     aria-hidden
-                    className="z-2 absolute inset-0 isolate hidden opacity-50 contain-strict lg:block">
+                    className="absolute inset-0 isolate hidden  contain-strict lg:block">
                     <div className="w-140 h-320 -translate-y-87.5 absolute left-0 top-0 -rotate-45 rounded-full bg-[radial-gradient(68.54%_68.72%_at_55.02%_31.46%,hsla(0,0%,85%,.08)_0,hsla(0,0%,55%,.02)_50%,hsla(0,0%,45%,0)_80%)]" />
                     <div className="h-320 absolute left-0 top-0 w-60 -rotate-45 rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.06)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)] [translate:5%_-50%]" />
                     <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
-                </div>
+                </div> */}
+                
+                
+                <section className="relative">
+                    <div className="relative pt-24 md:pt-36">
+                        <AnimatedGroup
+                            variants={{
+                                container: {
+                                    visible: {
+                                        transition: {
+                                            delayChildren: 1,
+                                        },
+                                    },
+                                },
+                                item: {
+                                    hidden: {
+                                        opacity: 0,
+                                        y: 20,
+                                    },
+                                    visible: {
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: {
+                                            type: 'spring',
+                                            bounce: 0.3,
+                                            duration: 2,
+                                        },
+                                    },
+                                },
+                            }}
+                            className="absolute inset-0 -z-20">
+                            <FloatingIconsHero
+                                title=""
+                                subtitle=""
+                                ctaText=""
+                                ctaHref="#"
+                                icons={demoIcons}
+                            />
 
-                <section className="overflow-hidden bg-white dark:bg-transparent">
-                    <div className="relative mx-auto max-w-5xl px-6 py-28 lg:py-24">
-                        <div className="relative z-10 mx-auto max-w-2xl text-center">
-                            <h1 className="text-balance text-4xl font-semibold md:text-5xl lg:text-6xl">Modern Software testing reimagined</h1>
-                            <p className="mx-auto my-8 max-w-2xl text-xl">Officiis laudantium excepturi ducimus rerum dignissimos, and tempora nam vitae, excepturi ducimus iste provident dolores.</p>
-
-                            <Button
-                                asChild
-                                size="lg">
-                                <Link href="#">
-                                    <span className="btn-label">Start Building</span>
-                                </Link>
-                            </Button>
+                        </AnimatedGroup>
+                        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                            
                         </div>
-                    </div>
 
-                    <div className="mx-auto -mt-16 max-w-7xl">
-                        <div className="perspective-distant -mr-16 pl-16 lg:-mr-56 lg:pl-56">
-                            <div className="[transform:rotateX(20deg);]">
-                                <div className="lg:h-176 relative skew-x-[.36rad]">
-                                    <div
-                                        aria-hidden
-                                        className="bg-linear-to-b from-background to-background z-1 absolute -inset-16 via-transparent sm:-inset-32"
-                                    />
-                                    <div
-                                        aria-hidden
-                                        className="bg-linear-to-r from-background to-background z-1 absolute -inset-16 bg-white/50 via-transparent sm:-inset-32 dark:bg-transparent"
-                                    />
+                        <div className="absolute inset-0 -z-10 size-full "></div>
+                        <div className="mx-auto max-w-7xl px-6">
+                            <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
+                                <AnimatedGroup variants={transitionVariants}>
+                                    <Link
+                                        href="#link"
+                                        className="hover:bg-gray-800 bg-gray-900 group mx-auto flex w-fit items-center gap-4 rounded-full border border-gray-700 p-1 pl-4 shadow-md transition-colors duration-300">
+                                        <span className="text-white text-sm">Introducing Morphic — one platform, infinite possibilities</span>
+                                        <span className="block h-4 w-0.5 border-l bg-gray-600"></span>
 
-                                    <div
-                                        aria-hidden
-                                        className="absolute -inset-16 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:24px_24px] [--color-border:var(--color-zinc-400)] sm:-inset-32 dark:[--color-border:color-mix(in_oklab,var(--color-white)_20%,transparent)]"
-                                    />
-                                    <div
-                                        aria-hidden
-                                        className="from-background z-11 absolute inset-0 bg-gradient-to-l"
-                                    />
-                                    <div
-                                        aria-hidden
-                                        className="z-2 absolute inset-0 size-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,transparent_40%,var(--color-background)_100%)]"
-                                    />
-                                    <div
-                                        aria-hidden
-                                        className="z-2 absolute inset-0 size-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,transparent_40%,var(--color-background)_100%)]"
-                                    />
+                                        <div className="bg-gray-800 group-hover:bg-gray-700 size-6 overflow-hidden rounded-full duration-500">
+                                            <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
+                                                <span className="flex size-6">
+                                                    <ArrowRight className="m-auto size-3" />
+                                                </span>
+                                                <span className="flex size-6">
+                                                    <ArrowRight className="m-auto size-3" />
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </AnimatedGroup>
+                                <motion.h1 
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.8, delay: 0.3 }}
+                                    className="mt-8 text-balance text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem] text-white">
+                                    All-in-One  CRM Platform Built for 
+                                    <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
+                                        &nbsp;
+                                        {titles.map((title, index) => (
+                                        <motion.span
+                                            key={index}
+                                            className="absolute font-semibold"
+                                            initial={{ opacity: 0, y: "-100" }}
+                                            transition={{ type: "spring", stiffness: 50 }}
+                                            animate={
+                                            titleNumber === index
+                                                ? {
+                                                    y: 0,
+                                                    opacity: 1,
+                                                }
+                                                : {
+                                                    y: titleNumber > index ? -150 : 150,
+                                                    opacity: 0,
+                                                }
+                                            }
+                                        >
+                                            {title}
+                                        </motion.span>
+                                    
+                                    ))}
+                                    </span>
+                                </motion.h1>
+                                <TextEffect
+                                    per="line"
+                                    preset="fade-in-blur"
+                                    speedSegment={0.3}
+                                    delay={0.5}
+                                    as="p"
+                                    className="mx-auto mt-8 max-w-2xl text-balance text-lg text-gray-300">
+                                    Automate, connect, and scale your business with Morphic — your complete sales, marketing, and communication toolkit.
+                                </TextEffect>
 
-                                    <Image
-                                        className="rounded-(--radius) z-1 relative border dark:hidden"
-                                        src="/card.png"
-                                        alt="Tailark hero section"
-                                        width={2880}
-                                        height={2074}
-                                    />
-                                    <Image
-                                        className="rounded-(--radius) z-1 relative hidden border dark:block"
-                                        src="/dark-card.webp"
-                                        alt="Tailark hero section"
-                                        width={2880}
-                                        height={2074}
-                                    />
-                                </div>
+                                <AnimatedGroup
+                                    variants={{
+                                        container: {
+                                            visible: {
+                                                transition: {
+                                                    staggerChildren: 0.05,
+                                                    delayChildren: 0.75,
+                                                },
+                                            },
+                                        },
+                                        ...transitionVariants,
+                                    }}
+                                    className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
+                                    {/* <div
+                                        key={1}
+                                        className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
+                                        <Button
+                                            asChild
+                                            size="lg"
+                                            className="rounded-xl px-5 text-base">
+                                            <Link href="#link">
+                                                <span className="text-nowrap">Start Building</span>
+                                            </Link>
+                                        </Button>
+                                    </div>
+                                    <Button
+                                        key={2}
+                                        asChild
+                                        size="lg"
+                                        variant="ghost"
+                                        className="h-10.5 rounded-xl px-5">
+                                        <Link href="#link">
+                                            <span className="text-nowrap">Request a demo</span>
+                                        </Link>
+                                    </Button> */}
+                                    <form
+                                    action=""
+                                    className="mx-auto max-w-sm">
+                                    <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
+                                        <Mail className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
+
+                                        <input
+                                            placeholder="Your mail address"
+                                            className="h-12 w-full bg-transparent pl-12 focus:outline-none"
+                                            type="email"
+                                        />
+
+                                        <div className="md:pr-1.5 lg:pr-0">
+                                            <Button
+                                                aria-label="submit"
+                                                size="sm"
+                                                className="rounded-(--radius)">
+                                                <span className="hidden md:block">Get Started</span>
+                                                <SendHorizonal
+                                                    className="relative mx-auto size-5 md:hidden"
+                                                    strokeWidth={2}
+                                                />
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </form>
+                                </AnimatedGroup>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <section className="bg-background relative z-10 py-16">
-                    <div className="m-auto max-w-5xl px-6">
-                        <h2 className="text-center text-lg font-medium">Your favorite companies are our partners.</h2>
-                        <div className="mx-auto mt-20 flex max-w-4xl flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16 sm:gap-y-12">
-                            <img
-                                className="h-5 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                                alt="Nvidia Logo"
-                                height="20"
-                                width="auto"
-                            />
-                            <img
-                                className="h-4 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/column.svg"
-                                alt="Column Logo"
-                                height="16"
-                                width="auto"
-                            />
-                            <img
-                                className="h-4 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/github.svg"
-                                alt="GitHub Logo"
-                                height="16"
-                                width="auto"
-                            />
-                            <img
-                                className="h-5 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/nike.svg"
-                                alt="Nike Logo"
-                                height="20"
-                                width="auto"
-                            />
-                            <img
-                                className="h-4 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/laravel.svg"
-                                alt="Laravel Logo"
-                                height="16"
-                                width="auto"
-                            />
-                            <img
-                                className="h-7 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/lilly.svg"
-                                alt="Lilly Logo"
-                                height="28"
-                                width="auto"
-                            />
-                            <img
-                                className="h-5 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                                alt="Lemon Squeezy Logo"
-                                height="20"
-                                width="auto"
-                            />
-                            <img
-                                className="h-6 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/openai.svg"
-                                alt="OpenAI Logo"
-                                height="24"
-                                width="auto"
-                            />
-                            <img
-                                className="h-4 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/tailwindcss.svg"
-                                alt="Tailwind CSS Logo"
-                                height="16"
-                                width="auto"
-                            />
-                            <img
-                                className="h-5 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/vercel.svg"
-                                alt="Vercel Logo"
-                                height="20"
-                                width="auto"
-                            />
-                            <img
-                                className="h-5 w-fit dark:invert"
-                                src="https://html.tailus.io/blocks/customers/zapier.svg"
-                                alt="Zapier Logo"
-                                height="20"
-                                width="auto"
+
+                        <div className="mt-0">
+                            <ContainerScroll
+                                titleComponent="Features"
+                                children={<div >
+                                    <Image src="/morphic.png" className='border-2 rounded-xl' alt="morphic" width={2700} height={1440} />
+                                </div>}
                             />
                         </div>
                     </div>
                 </section>
+                
             </main>
         </>
     )
