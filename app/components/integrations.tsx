@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function IntegrationsSection() {
     return (
-        <section className='-translate-y-[35rem]'>
+        <section className=''>
             <div className="bg-muted dark:bg-background py-24 md:py-32">
                 <div className="mx-auto flex flex-col px-6 md:grid md:max-w-5xl md:grid-cols-2 md:gap-12">
                     <div className="order-last mt-6 flex flex-col gap-12 md:order-first">
@@ -21,7 +21,9 @@ export default function IntegrationsSection() {
 
                         <div className="mt-auto grid grid-cols-[auto_1fr] gap-3">
                             <div className="bg-background flex aspect-square items-center justify-center border">
-                                <MediaWiki className="size-9" />
+                                <div className="size-9">
+                                    <MediaWiki />
+                                </div>
                             </div>
                             <blockquote>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>

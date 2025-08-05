@@ -181,7 +181,10 @@ export default function HeroSection() {
 
     return (
         <>
-            <HeroHeader />
+        <div className="z-80">
+        <HeroHeader />
+        </div> 
+            
             <main className="overflow-hidden">
 
                 {/* <div
@@ -261,7 +264,7 @@ export default function HeroSection() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.8, delay: 0.3 }}
                                     className="mt-8 text-balance text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem] text-white">
-                                    All-in-One  CRM Platform Built for 
+                                    Welcome to Looplet <br />The Future of Business 
                                     <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                                         &nbsp;
                                         {titles.map((title, index) => (
@@ -363,14 +366,50 @@ export default function HeroSection() {
                             </div>
                         </div>
 
-                        <div className="mt-0">
-                            <ContainerScroll
+                        <AnimatedGroup
+                            variants={{
+                                container: {
+                                    visible: {
+                                        transition: {
+                                            staggerChildren: 0.05,
+                                            delayChildren: 0.75,
+                                        },
+                                    },
+                                },
+                                ...transitionVariants,
+                            }}>
+
+                            <div className="">
+                            {/* <ContainerScroll
                                 titleComponent="Features"
                                 children={<div >
                                     <Image src="/morphic.png" className='border-2 rounded-xl' alt="morphic" width={2700} height={1440} />
                                 </div>}
-                            />
-                        </div>
+                            /> */}
+                            </div>
+                            <div className="relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
+                                <div
+                                    aria-hidden
+                                    className="bg-linear-to-b to-background absolute inset-0 z-10 from-transparent from-35%"
+                                />
+                                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
+                                    <Image
+                                        className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
+                                        src="/hero.png"
+                                        alt="app screen"
+                                        width="2700"
+                                        height="1440"
+                                    />
+                                    <Image
+                                        className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
+                                        src="/hero.png"
+                                        alt="app screen"
+                                        width="2700"
+                                        height="1440"
+                                    />
+                                </div>
+                            </div>
+                        </AnimatedGroup>
                     </div>
                 </section>
                 
