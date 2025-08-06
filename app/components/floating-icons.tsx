@@ -1,9 +1,11 @@
-import * as React from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import DarkVeil from './DarkVeil/DarkVeil';
-import LightRays from './LightRays/LightRays';
+import * as React from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import DarkVeil from "./DarkVeil/DarkVeil";
+import LightRays from "./LightRays/LightRays";
+import Iridescence from "./Iridescence/Iridescence";
 
 // Interface for the props of each individual icon.
 interface IconProps {
@@ -68,8 +70,8 @@ const Icon = ({
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [x, y, mouseX, mouseY]);
 
   return (
@@ -87,7 +89,7 @@ const Icon = ({
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className={cn('absolute', iconData.className)}
+      className={cn("absolute", iconData.className)}
     >
       {/* Inner wrapper for the continuous floating animation */}
       <motion.div
@@ -100,8 +102,8 @@ const Icon = ({
         transition={{
           duration: 5 + Math.random() * 5,
           repeat: Infinity,
-          repeatType: 'mirror',
-          ease: 'easeInOut',
+          repeatType: "mirror",
+          ease: "easeInOut",
         }}
       >
         <iconData.icon className="w-8 h-8 md:w-10 md:h-10 text-foreground" />
@@ -128,23 +130,17 @@ const FloatingIconsHero = React.forwardRef<
       ref={ref}
       onMouseMove={handleMouseMove}
       className={cn(
-        'relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-background',
+        "relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden ",
         className
       )}
       {...props}
     >
-        <LightRays
-            raysOrigin="top-center"
-            raysColor="#0357d9"
-            raysSpeed={1.5}
-            lightSpread={2.0}
-            rayLength={3.0}
-            followMouse={true}
-            mouseInfluence={0.1}
-            noiseAmount={0.1}
-            distortion={0.05}
-            className="custom-rays"
-        />
+      <div className="absolute inset-0 -z-10">
+        {/* <Image src="/land.jpg" alt="Looplet" width={2100} height={1440} className="w-full h-full object-cover" />
+         */}
+        
+      </div>
+      
       {/* Container for the background floating icons */}
       <div className="absolute inset-0 w-full h-full">
         {icons.map((iconData, index) => (
@@ -157,17 +153,26 @@ const FloatingIconsHero = React.forwardRef<
           />
         ))}
       </div>
+      <LightRays
+        raysOrigin="top-center"
+        raysColor="#0357d9"
+        raysSpeed={1.5}
+        lightSpread={2.0}
+        rayLength={3.0}
+        fadeDistance={2.0}
+        followMouse={true}
+        mouseInfluence={0.1}
+        noiseAmount={0.1}
+        distortion={0.05}
+        className="custom-rays"
+      />
 
       {/* Container for the foreground content */}
-      <div className="relative z-10  px-4">
-      
-        
-      </div>
-
+      <div className="relative z-10  px-4"></div>
     </section>
   );
 });
 
-FloatingIconsHero.displayName = 'FloatingIconsHero';
+FloatingIconsHero.displayName = "FloatingIconsHero";
 
 export { FloatingIconsHero };

@@ -15,6 +15,7 @@ import {
     type FloatingIconsHeroProps,
   } from './floating-icons'; // Adjust path as needed
 import { ContainerScroll } from '@/components/ui/container-scroll-animation'
+import LightRays from './LightRays/LightRays'
   
   // --- Original Stylized Company Logo SVG Components ---
   
@@ -186,6 +187,7 @@ export default function HeroSection() {
         </div> 
             
             <main className="overflow-hidden">
+                
 
                 {/* <div
                     aria-hidden
@@ -224,6 +226,7 @@ export default function HeroSection() {
                                 },
                             }}
                             className="absolute inset-0 -z-20">
+                                
                             <FloatingIconsHero
                                 title=""
                                 subtitle=""
@@ -231,8 +234,9 @@ export default function HeroSection() {
                                 ctaHref="#"
                                 icons={demoIcons}
                             />
-
+                            
                         </AnimatedGroup>
+                        
                         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
                             
                         </div>
@@ -244,7 +248,7 @@ export default function HeroSection() {
                                     <Link
                                         href="#link"
                                         className="hover:bg-gray-800 bg-gray-900 group mx-auto flex w-fit items-center gap-4 rounded-full border border-gray-700 p-1 pl-4 shadow-md transition-colors duration-300">
-                                        <span className="text-white text-sm">Introducing Morphic — one platform, infinite possibilities</span>
+                                        <span className="text-white text-sm">Introducing Looplet — The Ultimate All-in-One Business Platform</span>
                                         <span className="block h-4 w-0.5 border-l bg-gray-600"></span>
 
                                         <div className="bg-gray-800 group-hover:bg-gray-700 size-6 overflow-hidden rounded-full duration-500">
@@ -298,7 +302,7 @@ export default function HeroSection() {
                                     delay={0.5}
                                     as="p"
                                     className="mx-auto mt-8 max-w-2xl text-balance text-lg text-gray-300">
-                                    Automate, connect, and scale your business with Morphic — your complete sales, marketing, and communication toolkit.
+                                    The ultimate all-in-one platform that goes beyond GoHighLevel. Automate your entire business with advanced CRM, marketing automation, funnel building, and AI-powered insights.
                                 </TextEffect>
 
                                 <AnimatedGroup

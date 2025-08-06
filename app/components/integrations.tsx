@@ -9,8 +9,8 @@ export default function IntegrationsSection() {
                 <div className="mx-auto flex flex-col px-6 md:grid md:max-w-5xl md:grid-cols-2 md:gap-12">
                     <div className="order-last mt-6 flex flex-col gap-12 md:order-first">
                         <div className="space-y-6">
-                            <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl">Integrate with your favorite LLMs</h2>
-                            <p className="text-muted-foreground">Connect seamlessly with popular platforms and services to enhance your workflow.</p>
+                            <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl">Integrate with your favorite tools</h2>
+                            <p className="text-muted-foreground">Connect seamlessly with popular platforms and services to enhance your business workflow.</p>
                             <Button
                                 variant="outline"
                                 size="sm"
@@ -26,10 +26,10 @@ export default function IntegrationsSection() {
                                 </div>
                             </div>
                             <blockquote>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+                                <p>"The integrations are seamless. We connected our existing tools and everything works perfectly together, saving us hours every week."</p>
                                 <div className="mt-2 flex gap-2 text-sm">
-                                    <cite>John Doe</cite>
-                                    <p className="text-muted-foreground">Founder, MediaWiki</p>
+                                    <cite>Sarah Johnson</cite>
+                                    <p className="text-muted-foreground">Marketing Director, TechFlow</p>
                                 </div>
                             </blockquote>
                         </div>
