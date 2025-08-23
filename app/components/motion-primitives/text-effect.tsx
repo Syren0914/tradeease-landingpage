@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 
 interface TextEffectProps {
   children: string
-  as?: keyof JSX.IntrinsicElements
+  as?: keyof React.JSX.IntrinsicElements
   className?: string
   preset?: 'fade-in-blur' | 'slide-up' | 'fade-in'
   speedSegment?: number
@@ -21,8 +21,6 @@ export function TextEffect({
   delay = 0,
   per = 'char'
 }: TextEffectProps) {
-  const Component = motion[as] as any
-
   const variants = {
     'fade-in-blur': {
       hidden: { opacity: 0, filter: 'blur(10px)' },
@@ -38,8 +36,117 @@ export function TextEffect({
     }
   }
 
+  if (as === 'div') {
+    return (
+      <motion.div
+        className={cn(className)}
+        initial="hidden"
+        animate="visible"
+        variants={variants[preset]}
+        transition={{
+          duration: speedSegment,
+          delay,
+          ease: "easeOut"
+        }}
+      >
+        {children}
+      </motion.div>
+    )
+  }
+
+  if (as === 'span') {
+    return (
+      <motion.span
+        className={cn(className)}
+        initial="hidden"
+        animate="visible"
+        variants={variants[preset]}
+        transition={{
+          duration: speedSegment,
+          delay,
+          ease: "easeOut"
+        }}
+      >
+        {children}
+      </motion.span>
+    )
+  }
+
+  if (as === 'h1') {
+    return (
+      <motion.h1
+        className={cn(className)}
+        initial="hidden"
+        animate="visible"
+        variants={variants[preset]}
+        transition={{
+          duration: speedSegment,
+          delay,
+          ease: "easeOut"
+        }}
+      >
+        {children}
+      </motion.h1>
+    )
+  }
+
+  if (as === 'h2') {
+    return (
+      <motion.h2
+        className={cn(className)}
+        initial="hidden"
+        animate="visible"
+        variants={variants[preset]}
+        transition={{
+          duration: speedSegment,
+          delay,
+          ease: "easeOut"
+        }}
+      >
+        {children}
+      </motion.h2>
+    )
+  }
+
+  if (as === 'h3') {
+    return (
+      <motion.h3
+        className={cn(className)}
+        initial="hidden"
+        animate="visible"
+        variants={variants[preset]}
+        transition={{
+          duration: speedSegment,
+          delay,
+          ease: "easeOut"
+        }}
+      >
+        {children}
+      </motion.h3>
+    )
+  }
+
+  if (as === 'p') {
+    return (
+      <motion.p
+        className={cn(className)}
+        initial="hidden"
+        animate="visible"
+        variants={variants[preset]}
+        transition={{
+          duration: speedSegment,
+          delay,
+          ease: "easeOut"
+        }}
+      >
+        {children}
+      </motion.p>
+    )
+  }
+
+  // Default to div
   return (
-    <Component
+    <motion.div
       className={cn(className)}
       initial="hidden"
       animate="visible"
@@ -51,6 +158,6 @@ export function TextEffect({
       }}
     >
       {children}
-    </Component>
+    </motion.div>
   )
 } 
