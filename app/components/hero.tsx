@@ -16,6 +16,7 @@ import {
   } from './floating-icons'; // Adjust path as needed
 import { ContainerScroll } from '@/components/ui/container-scroll-animation'
 import LightRays from './LightRays/LightRays'
+import GlassAuthModal from './authmodel'
   
   // --- Original Stylized Company Logo SVG Components ---
   
@@ -334,17 +335,18 @@ export default function HeroSection() {
                                         ...transitionVariants,
                                     }}
                                     className="mt-12 flex flex-col items-center justify-center gap-2 md:flex-row">
-                                    {/* <div
+                                    <div
                                         key={1}
                                         className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
-                                        <Button
+                                        {/* <Button
                                             asChild
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
-                                            <Link href="#link">
-                                                <span className="text-nowrap">Start Building</span>
+                                            <Link href="/signup">
+                                                <span className="text-nowrap">Waitlist Now</span>
                                             </Link>
-                                        </Button>
+                                        </Button> */}
+                                        <GlassAuthModal />
                                     </div>
                                     <Button
                                         key={2}
@@ -353,10 +355,20 @@ export default function HeroSection() {
                                         variant="ghost"
                                         className="h-10.5 rounded-xl px-5">
                                         <Link href="#link">
-                                            <span className="text-nowrap">Request a demo</span>
+                                            <span className="text-nowrap">Learn More</span>
                                         </Link>
-                                    </Button> */}
-                                    <form
+                                    </Button>
+                                    {/* <Button
+                                                aria-label="submit"
+                                                size="sm"
+                                                className="rounded-(--radius)">
+                                                <span className="hidden md:block">Get Started</span>
+                                                <SendHorizonal
+                                                    className="relative mx-auto size-5 md:hidden"
+                                                    strokeWidth={2}
+                                                />
+                                            </Button> */}
+                                    {/* <form
                                     action=""
                                     className="mx-auto max-w-sm">
                                     <div className="bg-background has-[input:focus]:ring-muted relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
@@ -369,19 +381,10 @@ export default function HeroSection() {
                                         />
 
                                         <div className="md:pr-1.5 lg:pr-0">
-                                            <Button
-                                                aria-label="submit"
-                                                size="sm"
-                                                className="rounded-(--radius)">
-                                                <span className="hidden md:block">Get Started</span>
-                                                <SendHorizonal
-                                                    className="relative mx-auto size-5 md:hidden"
-                                                    strokeWidth={2}
-                                                />
-                                            </Button>
+                                            
                                         </div>
                                     </div>
-                                </form>
+                                </form> */}
                                 </AnimatedGroup>
                             </div>
                         </div>

@@ -99,11 +99,11 @@ const HeroHeader = () => {
                                       Sign In
                                     </Link>
                                   </Button>
-                                  <Button>
+                                  {/* <Button>
                                     <Link href="/sign-up">
                                       Sign Up
                                     </Link>
-                                  </Button>
+                                  </Button> */}
                                 </div>
                               </div>
                               

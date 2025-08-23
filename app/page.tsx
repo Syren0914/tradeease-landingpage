@@ -38,7 +38,7 @@ export default function Home() {
         <FeaturesSection />
         <IntegrationsSection />
         <Testimonials />
-        <PricingSectionDemo />
+        {/* <PricingSectionDemo /> */}
         <FooterSection />
       </div>
 

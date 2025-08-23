@@ -9,8 +9,8 @@ export default function IntegrationsSection() {
                 <div className="mx-auto flex flex-col px-6 md:grid md:max-w-5xl md:grid-cols-2 md:gap-12">
                     <div className="order-last mt-6 flex flex-col gap-12 md:order-first">
                         <div className="space-y-6">
-                            <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl">Integrate with your favorite LLMs</h2>
-                            <p className="text-muted-foreground">Connect seamlessly with popular platforms and services to enhance your workflow.</p>
+                            <h2 className="text-balance text-3xl font-semibold md:text-4xl lg:text-5xl">Integrate with Leading AI Models</h2>
+                            <p className="text-muted-foreground">Connect seamlessly with top AI platforms and communication channels to supercharge your business automation and customer engagement.</p>
                             <Button
                                 variant="outline"
                                 size="sm"
@@ -24,10 +24,10 @@ export default function IntegrationsSection() {
                                 <MediaWiki className="size-9" />
                             </div>
                             <blockquote>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+                                <p>"The AI integrations have transformed our customer service. We can now handle 10x more inquiries with intelligent automation."</p>
                                 <div className="mt-2 flex gap-2 text-sm">
-                                    <cite>John Doe</cite>
-                                    <p className="text-muted-foreground">Founder, MediaWiki</p>
+                                    <cite>Daniel Sivyer</cite>
+                                    <p className="text-muted-foreground">CEO, TechCorp</p>
                                 </div>
                             </blockquote>
                         </div>
@@ -39,32 +39,32 @@ export default function IntegrationsSection() {
                                 <Integration
                                     icon={<Gemini />}
                                     name="Gemini"
-                                    description="The AI model that powers Google's search engine."
+                                    description="Google's advanced AI model for intelligent conversations and content generation."
                                 />
                                 <Integration
                                     icon={<Replit />}
-                                    name="Replit"
-                                    description="The AI model that powers Google's search engine."
+                                    name="ChatGPT"
+                                    description="OpenAI's powerful language model for natural conversations and automation."
                                 />
                                 <Integration
                                     icon={<GooglePaLM />}
-                                    name="GooglePaLM"
-                                    description="The AI model that powers Google's search engine."
+                                    name="Claude"
+                                    description="Anthropic's AI assistant for complex reasoning and safe AI interactions."
                                 />
                                 <Integration
                                     icon={<MagicUI />}
-                                    name="MagicUI"
-                                    description="The AI model that powers Google's search engine."
+                                    name="WhatsApp"
+                                    description="Business API integration for automated messaging and customer support."
                                 />
                                 <Integration
                                     icon={<VSCodium />}
-                                    name="VSCodium"
-                                    description="The AI model that powers Google's search engine."
+                                    name="SMS Gateway"
+                                    description="Automated SMS campaigns and notifications for customer engagement."
                                 />
                                 <Integration
                                     icon={<MediaWiki />}
-                                    name="MediaWiki"
-                                    description="The AI model that powers Google's search engine."
+                                    name="Voice Calls"
+                                    description="Automated voice call systems for customer outreach and support."
                                 />
                             </div>
                         </div>
