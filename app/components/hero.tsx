@@ -200,6 +200,22 @@ export default function HeroSection() {
                 
                 <section className="relative">
                     <div className="relative pt-24 md:pt-36">
+                        <div className="absolute inset-0 -z-10 size-full">
+                        <LightRays
+                                raysOrigin="top-center"
+                                raysColor="#0357d9"
+                                raysSpeed={1.5}
+                                lightSpread={2.0}
+                                rayLength={3.0}
+                                fadeDistance={2.0}
+                                followMouse={true}
+                                mouseInfluence={0.1}
+                                noiseAmount={0.1}
+                                distortion={0.05}
+                                className="custom-rays"
+                            />
+                        </div>
+                        
                         <AnimatedGroup
                             variants={{
                                 container: {
@@ -226,7 +242,7 @@ export default function HeroSection() {
                                 },
                             }}
                             className="absolute inset-0 -z-20">
-                                
+                            
                             <FloatingIconsHero
                                 title=""
                                 subtitle=""
@@ -248,7 +264,7 @@ export default function HeroSection() {
                                     <Link
                                         href="#link"
                                         className="hover:bg-gray-800 bg-gray-900 group mx-auto flex w-fit items-center gap-4 rounded-full border border-gray-700 p-1 pl-4 shadow-md transition-colors duration-300">
-                                        <span className="text-white text-sm">Introducing Looplet — The Ultimate All-in-One Business Platform</span>
+                                        <span className="text-white text-sm">Introducing Morphic — one platform, infinite possibilities</span>
                                         <span className="block h-4 w-0.5 border-l bg-gray-600"></span>
 
                                         <div className="bg-gray-800 group-hover:bg-gray-700 size-6 overflow-hidden rounded-full duration-500">
@@ -302,7 +318,7 @@ export default function HeroSection() {
                                     delay={0.5}
                                     as="p"
                                     className="mx-auto mt-8 max-w-2xl text-balance text-lg text-gray-300">
-                                    The ultimate all-in-one platform that goes beyond GoHighLevel. Automate your entire business with advanced CRM, marketing automation, funnel building, and AI-powered insights.
+                                    Automate, connect, and scale your business with Morphic — your complete sales, marketing, and communication toolkit.
                                 </TextEffect>
 
                                 <AnimatedGroup
@@ -383,35 +399,34 @@ export default function HeroSection() {
                                 ...transitionVariants,
                             }}>
 
-                            <div className="">
-                            {/* <ContainerScroll
-                                titleComponent="Features"
-                                children={<div >
-                                    <Image src="/morphic.png" className='border-2 rounded-xl' alt="morphic" width={2700} height={1440} />
-                                </div>}
-                            /> */}
-                            </div>
+                            
+
+                            
+                            <ContainerScroll
+                                titleComponent={
+                                <>
+                                    <h1 className="text-4xl font-semibold text-black dark:text-white">
+                                    
+                                    </h1>
+                                </>
+                                }
+                            >
+                                <img
+                                src={`/hero.png`}
+                                alt="hero"
+                                height={720}
+                                width={1400}
+                                className="mx-auto rounded-2xl  h-full object-left-top w-full  object-fill"
+                                draggable={false}
+                                />
+                            </ContainerScroll>
+                            
                             <div className="relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
                                 <div
                                     aria-hidden
-                                    className="bg-linear-to-b to-background absolute inset-0 z-10 from-transparent from-35%"
+                                    className=""
                                 />
-                                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
-                                    <Image
-                                        className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
-                                        src="/hero.png"
-                                        alt="app screen"
-                                        width="2700"
-                                        height="1440"
-                                    />
-                                    <Image
-                                        className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
-                                        src="/hero.png"
-                                        alt="app screen"
-                                        width="2700"
-                                        height="1440"
-                                    />
-                                </div>
+                                
                             </div>
                         </AnimatedGroup>
                     </div>

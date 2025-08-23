@@ -1,9 +1,11 @@
 import { Cpu, Lock, Sparkles, Zap } from 'lucide-react'
 import Image from 'next/image'
+import { AnimatedCard, CardTitle, Visual3, CardVisual, CardBody, CardDescription } from './ui/animated-card'
 
 export default function FeaturesSection() {
     return (
         <section className="overflow-hidden py-16 md:py-32">
+            
             <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-12">
                 <div className="relative z-10 max-w-2xl">
                     <h2 className="text-4xl font-semibold lg:text-5xl">Built for Growing Businesses</h2>
@@ -15,8 +17,8 @@ export default function FeaturesSection() {
                             <div className="aspect-88/36 relative">
                                 <div className="bg-radial-[at_75%_25%] to-background z-1 -inset-17 absolute from-transparent to-75%"></div>
                                     {/* <Image src="/map.png" className="absolute inset-0 z-10" alt="payments illustration dark" width={2797} height={1137} /> */}
-                                    <Image src="/map4.png" className="hidden dark:block rounded-2xl" alt="payments illustration dark" width={2797} height={1137} />
-                                    <Image src="/map4.png" className="dark:hidden" alt="payments illustration light" width={2797} height={1137} />
+                                    <Image src="/hero.png" className="hidden dark:block rounded-2xl" alt="payments illustration dark" width={2797} height={1137} />
+                                    <Image src="/hero.png" className="dark:hidden" alt="payments illustration light" width={2797} height={1137} />
                                 </div>
                         </div>
                     </div>

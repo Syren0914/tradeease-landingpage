@@ -153,19 +153,7 @@ const FloatingIconsHero = React.forwardRef<
           />
         ))}
       </div>
-      <LightRays
-        raysOrigin="top-center"
-        raysColor="#0357d9"
-        raysSpeed={1.5}
-        lightSpread={2.0}
-        rayLength={3.0}
-        fadeDistance={2.0}
-        followMouse={true}
-        mouseInfluence={0.1}
-        noiseAmount={0.1}
-        distortion={0.05}
-        className="custom-rays"
-      />
+      
 
       {/* Container for the foreground content */}
       <div className="relative z-10  px-4"></div>
