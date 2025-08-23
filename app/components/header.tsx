@@ -5,7 +5,7 @@ import React from 'react'
 import { Search, Award, Star, MapPin, ArrowRight, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'
-import { useTransitionRouter } from 'next-view-transitions';
+// import { useTransitionRouter } from 'next-view-transitions';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
@@ -20,7 +20,7 @@ const menuItems = [
 const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false)
   const [isScrolled, setIsScrolled] = React.useState(false)
-  const router = useTransitionRouter()
+  // const router = useTransitionRouter()
 
 
 
@@ -63,12 +63,12 @@ const HeroHeader = () => {
                                       <Link
                                           href={item.href}
                                           className="text-white hover:text-lime-200 block duration-150" 
-                                          onClick={async (e) => {
-                                            e.preventDefault();
-                                            await router.push(item.href, {
-                                              onTransitionReady: pageTransition,
-                                            });
-                                          }}
+                                          // onClick={async (e) => {
+                                          //   e.preventDefault();
+                                          //   await router.push(item.href, {
+                                          //     onTransitionReady: pageTransition,
+                                          //   });
+                                          // }}
                                           
                                           >
                                           <span>{item.name}</span>
@@ -149,40 +149,40 @@ const Logo = ({ className }: { className?: string }) => {
   )
 }
 
-const pageTransition = () => {
-    return new Promise<void>((resolve, reject) => {
-        try {
-            const oldView = document.documentElement.animate(
-                [
-                { opacity: 1, transform: 'translateY(0px)' },
-                { opacity: 0, transform: 'translateY(-30px)' },
-                ],
-                {
-                duration: 300,
-                easing: 'ease-in-out',
-                fill: 'forwards',
-                pseudoElement: '::view-transition-old(root)',
-                }
-            )
-        
-            const newView = document.documentElement.animate(
-                [
-                { opacity: 0, transform: 'translateY(30px)' },
-                { opacity: 1, transform: 'translateY(0)' },
-                ],
-                {
-                duration: 300,
-                easing: 'ease-in-out',
-                fill: 'forwards',
-                pseudoElement: '::view-transition-new(root)',
-                }
-            )
-        
-            Promise.all([oldView.finished, newView.finished]).then(() => resolve()).catch(reject)
-        } catch (err) {
-            console.error("Transition failed:", err);
-            reject(err);
-        }
-    })
-}
+// const pageTransition = () => {
+//     return new Promise<void>((resolve, reject) => {
+//         try {
+//             const oldView = document.documentElement.animate(
+//                 [
+//                 { opacity: 1, transform: 'translateY(0px)' },
+//                 { opacity: 0, transform: 'translateY(-30px)' },
+//                 ],
+//                 {
+//                 duration: 300,
+//                 easing: 'ease-in-out',
+//                 fill: 'forwards',
+//                 pseudoElement: '::view-transition-old(root)',
+//                 }
+//             )
+//         
+//             const newView = document.documentElement.animate(
+//                 [
+//                 { opacity: 0, transform: 'translateY(30px)' },
+//                 { opacity: 1, transform: 'translateY(0)' },
+//                 ],
+//                 {
+//                 duration: 300,
+//                 easing: 'ease-in-out',
+//                 fill: 'forwards',
+//                 pseudoElement: '::view-transition-new(root)',
+//                 }
+//             )
+//         
+//             Promise.all([oldView.finished, newView.finished]).then(() => resolve()).catch(reject)
+//         } catch (err) {
+//             console.error("Transition failed:", err);
+//             reject(err);
+//         }
+//     })
+// }
   
