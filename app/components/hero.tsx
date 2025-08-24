@@ -2,10 +2,10 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, ChevronRight, Mail, SendHorizonal } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '../../components/ui/button'
 import Image from 'next/image'
-import { TextEffect } from '@/app/components/motion-primitives/text-effect'
-import { AnimatedGroup } from '@/app/components/motion-primitives/animated-group'
+import { TextEffect } from './motion-primitives/text-effect'
+import { AnimatedGroup } from './motion-primitives/animated-group'
 import { HeroHeader } from './header'
 import DarkVeil from './DarkVeil/DarkVeil'
 import FluidGlass from './FluidGlass/FluidGlass'
@@ -14,9 +14,13 @@ import {
     FloatingIconsHero,
     type FloatingIconsHeroProps,
   } from './floating-icons'; // Adjust path as needed
-import { ContainerScroll } from '@/components/ui/container-scroll-animation'
+import { ContainerScroll } from '../../components/ui/container-scroll-animation'
 import LightRays from './LightRays/LightRays'
+<<<<<<< Updated upstream
 import GlassAuthModal from './authmodel'
+=======
+import ShaderBackground from './ShaderBackground/ShaderBackground'
+>>>>>>> Stashed changes
   
   // --- Original Stylized Company Logo SVG Components ---
   
@@ -200,6 +204,12 @@ export default function HeroSection() {
                 
                 
                 <section className="relative">
+                    {/* Shader Background */}
+                    
+                    
+                    {/* Subtle overlay for text readability */}
+                    <div className="absolute inset-0 bg-black/20 -z-10"></div>
+                    
                     <div className="relative pt-24 md:pt-36">
                         <div className="absolute inset-0 -z-10 size-full">
                         <LightRays
@@ -243,15 +253,20 @@ export default function HeroSection() {
                                 },
                             }}
                             className="absolute inset-0 -z-20">
+<<<<<<< Updated upstream
                             
                             <FloatingIconsHero
+=======
+                                
+                            {/* <FloatingIconsHero
+>>>>>>> Stashed changes
                                 title=""
                                 subtitle=""
                                 ctaText=""
                                 ctaHref="#"
                                 icons={demoIcons}
-                            />
-                            
+                            /> */}
+                            <ShaderBackground />
                         </AnimatedGroup>
                         
                         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
