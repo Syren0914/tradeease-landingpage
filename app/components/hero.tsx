@@ -17,7 +17,11 @@ import {
 import { ContainerScroll } from '../../components/ui/container-scroll-animation'
 import LightRays from './LightRays/LightRays'
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import GlassAuthModal from './authmodel'
+=======
+import ShaderBackground from './ShaderBackground/ShaderBackground'
+>>>>>>> Stashed changes
 =======
 import ShaderBackground from './ShaderBackground/ShaderBackground'
 >>>>>>> Stashed changes
@@ -254,8 +258,13 @@ export default function HeroSection() {
                             }}
                             className="absolute inset-0 -z-20">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                             
                             <FloatingIconsHero
+=======
+                                
+                            {/* <FloatingIconsHero
+>>>>>>> Stashed changes
 =======
                                 
                             {/* <FloatingIconsHero
