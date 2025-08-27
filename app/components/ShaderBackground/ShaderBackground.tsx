@@ -193,10 +193,17 @@ const ShaderBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
+<<<<<<< Updated upstream
       className="fixed inset-0 w-full h-full -z-50"
       style={{
         width: '100vw',
         height: '100vh',
+=======
+      className="absolute inset-0 w-full h-full -z-20"
+      style={{
+        width: '100%',
+        height: '100%',
+>>>>>>> Stashed changes
         display: 'block',
       }}
     />

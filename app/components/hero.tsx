@@ -17,7 +17,10 @@ import {
 import { ContainerScroll } from '../../components/ui/container-scroll-animation'
 import LightRays from './LightRays/LightRays'
 import ShaderBackground from './ShaderBackground/ShaderBackground'
+<<<<<<< Updated upstream
 import GlassAuthModal from './authmodel'
+=======
+>>>>>>> Stashed changes
   
   // --- Original Stylized Company Logo SVG Components ---
   
@@ -205,7 +208,11 @@ export default function HeroSection() {
                     
                     
                     {/* Subtle overlay for text readability */}
+<<<<<<< Updated upstream
                     <div className="absolute inset-0  -z-10"></div>
+=======
+                    <div className="absolute inset-0 bg-black/20 -z-10"></div>
+>>>>>>> Stashed changes
                     
                     <div className="relative pt-24 md:pt-36">
                         <div className="absolute inset-0 -z-10 size-full">
@@ -258,6 +265,10 @@ export default function HeroSection() {
                                 ctaHref="#"
                                 icons={demoIcons}
                             /> */}
+<<<<<<< Updated upstream
+=======
+                            <ShaderBackground />
+>>>>>>> Stashed changes
                         </AnimatedGroup>
                         
                         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
