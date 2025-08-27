@@ -16,19 +16,8 @@ import {
   } from './floating-icons'; // Adjust path as needed
 import { ContainerScroll } from '../../components/ui/container-scroll-animation'
 import LightRays from './LightRays/LightRays'
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+import ShaderBackground from './ShaderBackground/ShaderBackground'
 import GlassAuthModal from './authmodel'
-=======
-import ShaderBackground from './ShaderBackground/ShaderBackground'
->>>>>>> Stashed changes
-=======
-import ShaderBackground from './ShaderBackground/ShaderBackground'
->>>>>>> Stashed changes
-=======
-import ShaderBackground from './ShaderBackground/ShaderBackground'
->>>>>>> Stashed changes
   
   // --- Original Stylized Company Logo SVG Components ---
   
@@ -216,7 +205,7 @@ export default function HeroSection() {
                     
                     
                     {/* Subtle overlay for text readability */}
-                    <div className="absolute inset-0 bg-black/20 -z-10"></div>
+                    <div className="absolute inset-0  -z-10"></div>
                     
                     <div className="relative pt-24 md:pt-36">
                         <div className="absolute inset-0 -z-10 size-full">
@@ -261,30 +250,14 @@ export default function HeroSection() {
                                 },
                             }}
                             className="absolute inset-0 -z-20">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                            
-                            <FloatingIconsHero
-=======
                                 
                             {/* <FloatingIconsHero
->>>>>>> Stashed changes
-=======
-                                
-                            {/* <FloatingIconsHero
->>>>>>> Stashed changes
-=======
-                                
-                            {/* <FloatingIconsHero
->>>>>>> Stashed changes
                                 title=""
                                 subtitle=""
                                 ctaText=""
                                 ctaHref="#"
                                 icons={demoIcons}
                             /> */}
-                            <ShaderBackground />
                         </AnimatedGroup>
                         
                         <div style={{ width: '100%', height: '100%', position: 'relative' }}>

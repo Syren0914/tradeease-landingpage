@@ -15,10 +15,10 @@ export default function FeaturesSection() {
                     <div className="perspective-midrange">
                         <div className="rotate-x-6 -skew-2">
                             <div className="aspect-88/36 relative">
-                                <div className="bg-radial-[at_75%_25%] to-background z-1 -inset-17 absolute from-transparent to-75%"></div>
+                                <div className=""></div>
                                     {/* <Image src="/map.png" className="absolute inset-0 z-10" alt="payments illustration dark" width={2797} height={1137} /> */}
-                                    <Image src="/hero.png" className="hidden dark:block rounded-2xl" alt="payments illustration dark" width={2797} height={1137} />
-                                    <Image src="/hero.png" className="dark:hidden" alt="payments illustration light" width={2797} height={1137} />
+                                    <Image src="/hero.png" className="hidden dark:block rounded-2xl bg-radial-[at_75%_25%] to-background z-1 -inset-17 absolute from-transparent to-75%" alt="payments illustration dark" width={2797} height={1137} />
+                                    <Image src="/hero.png" className="dark:hidden bg-radial-[at_75%_25%] to-background z-1 -inset-17 absolute from-transparent to-75%" alt="payments illustration light" width={2797} height={1137} />
                                 </div>
                         </div>
                     </div>

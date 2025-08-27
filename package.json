@@ -44,20 +44,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-use-measure": "^2.1.7",
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    "recharts": "2.15.4",
+    "recharts": "^3.1.2",
     "sonner": "^2.0.7",
-=======
-    "recharts": "^3.1.2",
->>>>>>> Stashed changes
-=======
-    "recharts": "^3.1.2",
->>>>>>> Stashed changes
-=======
-    "recharts": "^3.1.2",
->>>>>>> Stashed changes
     "tailwind-merge": "^3.3.1",
     "three": "^0.167.1",
     "vaul": "^1.1.2",

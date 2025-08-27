@@ -193,10 +193,10 @@ const ShaderBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full -z-20"
+      className="fixed inset-0 w-full h-full -z-50"
       style={{
-        width: '100%',
-        height: '100%',
+        width: '100vw',
+        height: '100vh',
         display: 'block',
       }}
     />
